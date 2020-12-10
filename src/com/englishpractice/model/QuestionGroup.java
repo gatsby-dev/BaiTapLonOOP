@@ -1,4 +1,4 @@
-package com.englishpractice.entity;
+package com.englishpractice.model;
 
 import java.util.List;
 

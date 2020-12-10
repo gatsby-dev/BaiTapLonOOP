@@ -1,14 +1,17 @@
-package com.englishpractice.entity;
+package com.englishpractice.model;
 
 import java.util.Date;
 import java.util.List;
 
 public class Candidate {
-    private int Id;
+	private static int count = 1;
+    private int Id = count++;
     private String username, password, fullName, country, gender;
     private Date dateOfBirth, joinDate;
     private List<Transcript> transcript;
     
+	public Candidate() {}
+
 	public Candidate(int Id, String username, String password, String fullName, String country, String gender,
 			Date dateOfBirth, Date joinDate) {
 		this.Id = Id;
@@ -66,11 +69,7 @@ public class Candidate {
 	}
 	
 	public void setGender(int gender) {
-		if(gender == 1) {
-			this.gender = "Nam";
-		} else {
-			this.gender = "Nữ";
-		}
+		this.gender = gender == 1 ? "Nam" : "Nữ";
 	}
 	
 	public Date getDateOfBirth() {
@@ -99,7 +98,7 @@ public class Candidate {
 
 	@Override
 	public String toString() {
-		return String.format("==================================\nHọ tên: %s\nQuê quán: %s\nNgày sinh: %s\nGiới tính: %s\nNgày đăng kí: %s\n", fullName, country, dateOfBirth, gender, joinDate);
+		return String.format("\n=========================================\nAcountID: %d\nTên tài khoản: %s\nHọ tên: %s\nQuê quán: %s\nNgày sinh: %s\nGiới tính: %s\nNgày đăng kí: %s\n", Id, username, fullName, country, dateOfBirth, gender, joinDate);
 	}
     
 }
