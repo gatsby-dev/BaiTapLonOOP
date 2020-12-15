@@ -8,13 +8,30 @@ import java.util.Date;
 import java.util.Scanner;
 
 import com.englishpractice.controller.CandidateController;
+import com.englishpractice.controller.HeadQuestionController;
+import com.englishpractice.controller.QuestionController;
 import com.englishpractice.model.Candidate;
+import com.englishpractice.model.Level;
+import com.englishpractice.model.Option;
+import com.englishpractice.model.Question;
 
 public class Main {
 
-	public static void main(String[] args) throws SQLException, ParseException {
+	public static void main(String[] args) throws SQLException, ParseException, ClassNotFoundException {
 		Scanner scanner = new Scanner(System.in);
 		CandidateController candidateController = new CandidateController();
+		QuestionController questionController = new QuestionController();
+		HeadQuestionController headQuesController = new HeadQuestionController();
+		Question q1 = new Question("I'm very happy _____ in India. I really miss being there.", Level.EASY);
+		Option c1 = new Option("to live", false);
+		Option c2 = new Option("to have lived", false);
+		Option c3 = new Option("to be lived", true);
+		Option c4 = new Option("to be living", false);
+		q1.addOption(c1);
+		q1.addOption(c2);
+		q1.addOption(c3);
+		q1.addOption(c4);
+		questionController.addQuestion(q1);
 		int userSelection;
 		do {
 			userSelection = PublicMenu(scanner);
@@ -34,6 +51,15 @@ public class Main {
 					switch (subchoice) {
 					case 1:
 						int questionType = QuestionTypeMenu(scanner);
+						System.out.println("\n=========================================");
+						if (questionType == 1) {
+							questionController.getQuestionsList();
+							questionController.Practice(scanner);
+						} else if (questionType == 2) {
+							headQuesController.getIncompleteQuestions();
+						} else {
+							headQuesController.getConversationQuestions();
+						}
 						break;
 					case 2:
 						System.out.println(loggingAccount);
@@ -76,8 +102,8 @@ public class Main {
 	// Đăng nhập
 	public static Candidate SignInMenu(Scanner scanner, CandidateController candidateController) throws SQLException {
 		String username, password;
-		System.out.println("\n=========================================");
 		scanner.nextLine();
+		System.out.println("\n=========================================");
 		System.out.print("Nhập tài khoản: ");
 		username = scanner.nextLine();
 		System.out.print("Nhập mật khẩu: ");
@@ -208,7 +234,6 @@ public class Main {
 		}
 	}
 
-	
 	// Chọn loại câu hỏi
 	public static int QuestionTypeMenu(Scanner scanner) {
 		int questionType;

@@ -29,7 +29,7 @@ public class Transcript {
 	
 	@Override
 	public String toString() {
-		return String.format("Ngày làm bài: %s - Điểm: %.2f\n", this.testDate, this.score);
+		return String.format("\n| Ngày làm bài: %s - Điểm: %.2f |\n", this.testDate, this.score);
 	}
 	
 }

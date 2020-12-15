@@ -30,7 +30,7 @@ public class Option {
 
 	@Override
 	public String toString() {
-		return content;
+		return this.content;
 	}
 
 }

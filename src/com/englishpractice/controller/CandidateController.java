@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.UUID;
 
 import com.englishpractice.model.Candidate;
 import com.englishpractice.utils.ConnectionUtils;
@@ -26,6 +25,7 @@ public class CandidateController {
             Candidate candidate = new Candidate(rs.getInt("ID"), rs.getString("Username"), rs.getString("Password"), rs.getString("FullName"), rs.getString("Country"), rs.getString("Gender"), rs.getDate("DateOfBirth"), rs.getDate("JoinDate"));
             candidatesList.add(candidate);
         }
+        System.out.println(candidatesList);
 	}
 
 	public List<Candidate> getCandidatesList() {
